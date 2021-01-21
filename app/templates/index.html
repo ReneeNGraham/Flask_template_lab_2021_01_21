@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meetings and Parties</title>
+</head>
+<body>
+    <h1>My Event list!</h1>
+    <form action="/events" method="post">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <label for="number_of_guest">Number_of_guest</label>
+        <input type="text" name="number_of_guest" id="number_of_guest">
+        <label for="location">Location</label>
+        <input type="text" name="location" id="location">
+        <label for="description">Description</label>
+        <textarea name="description" rows="4" cols="30"></textarea>
+        <input type="submit" value="Add Event">
+    </form>
+    <div>
+    <form action="/events/delete" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <label for="remove_event">Remove event</label>
+    <input type="submit" value="Remove Event">
+    </form>
+          
+    <div>
+        {% for event in events %}
+    <div>
+            <h1>Date: {{event.date}}</h1>
+            <h1>Name: {{event.name}}</h1>
+            <h2>Number_of_guest: {{event.number_of_guest}}</h2>
+            <h3>Location: {{event.location}}</h3>
+            <h4>Description: {{event.description}}</h4>
+    </div>
+        {% if event.done %}
+        <span>&#9989</span>
+        {% endif %}
+        {% endfor %}
+        </div>
+    
+</body>
+</html>
+
